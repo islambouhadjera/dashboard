@@ -45,9 +45,15 @@ app.get('/api/data', async (req, res) => {
 
 // Explicit Sync Endpoint (Called on App Mount)
 app.post('/api/sync', async (req, res) => {
-    console.log('Running sync script (Triggered by App Load)...');
+    const syncScriptPath = process.env.SYNC_SCRIPT_PATH;
+    if (!syncScriptPath) {
+        console.log('Sync skipped: SYNC_SCRIPT_PATH not defined.');
+        return res.json({ success: true, message: 'Sync skipped (not configured)' });
+    }
+
+    console.log('Running sync script:', syncScriptPath);
     try {
-        const { stdout, stderr } = await execPromise('node "C:\\Users\\MOHAMED\\Desktop\\application_mobile\\backend\\sync.js"');
+        const { stdout, stderr } = await execPromise(`node "${syncScriptPath}"`);
         if (stdout) console.log('Sync Output:', stdout);
         if (stderr) console.error('Sync Error:', stderr);
         res.json({ success: true, message: 'Sync completed' });

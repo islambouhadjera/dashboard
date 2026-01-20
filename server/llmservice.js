@@ -2,7 +2,7 @@ const path = require("path");
 
 class LlmService {
     constructor() {
-        this.modelPath = "C:\\Users\\MOHAMED\\AppData\\Local\\nomic.ai\\GPT4All\\Meta-Llama-3-8B-Instruct.Q4_0.gguf";
+        this.modelPath = process.env.MODEL_PATH || path.join(__dirname, "models", "Meta-Llama-3-8B-Instruct.Q4_0.gguf");
         this.model = null;
         this.context = null;
         this.session = null;

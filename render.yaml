@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: mobilis-dashboard-api
+    runtime: docker
+    dockerContext: ./server
+    dockerfilePath: Dockerfile
+    plan: free # or 'standard' if memory is an issue for the LLM
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: NODE_ENV
+        value: production
+      - key: DB_HOST
+        fromContext: DB_HOST
+      - key: DB_USER
+        fromContext: DB_USER
+      - key: DB_PASSWORD
+        fromContext: DB_PASSWORD
+      - key: DB_NAME
+        fromContext: DB_NAME
+      - key: DB_PORT
+        fromContext: DB_PORT
+      - key: MODEL_PATH
+        value: /app/models/Meta-Llama-3-8B-Instruct.Q4_0.gguf
