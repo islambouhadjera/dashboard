@@ -5,7 +5,6 @@ import { MapContainer, TileLayer, CircleMarker, Popup, Marker, Circle, Polygon, 
 import { Activity, Wifi, MapPin, Database, Server, AlertTriangle, Radio, Settings, X, Save, BarChart2, Signal, Globe, LayoutDashboard, Calendar, Clock } from 'lucide-react';
 import { useGlobalConfig } from '../contexts/GlobalConfigContext';
 import { API_BASE_URL } from '../config';
-import { API_BASE_URL } from '../config';
 import L from 'leaflet';
 import '../index.css';
 
