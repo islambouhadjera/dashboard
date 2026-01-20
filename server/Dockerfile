@@ -1,40 +1,21 @@
-# Build stage
-FROM node:18-bullseye-slim AS builder
+# Slim Dockerfile for Node.js API
+FROM node:18-alpine
 
 WORKDIR /app
-
-# Install build dependencies for node-llama-cpp
-RUN apt-get update && apt-get install -y \
-    python3 \
-    make \
-    g++ \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
 
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-# node-llama-cpp will download/build the necessary binaries during postinstall
-RUN npm install
+# Install dependencies (fast build, no compilation needed)
+RUN npm install --production
 
 # Copy source code
 COPY . .
 
-# Final stage
-FROM node:18-bullseye-slim
-
-WORKDIR /app
-
-# Copy built node_modules and code from builder
-COPY --from=builder /app /app
-
-# Expose the port the server runs on
+# Expose the port
 EXPOSE 5000
 
-# Set environment variables
 ENV PORT=5000
 ENV NODE_ENV=production
 
-# Start the application
 CMD ["node", "index.js"]

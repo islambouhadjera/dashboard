@@ -26,10 +26,10 @@ Ce guide explique comment déployer votre dashboard avec le **Frontend sur Verce
    - `DB_PASSWORD` : (Votre mot de passe)
    - `DB_NAME` : `mobilis_dashboard`
    - `DB_PORT` : `4000`
-   - `MODEL_PATH` : `/app/models/Meta-Llama-3-8B-Instruct.Q4_0.gguf`
-6. **Note sur l'IA :** Le modèle Llama-3-8B nécessite beaucoup de RAM (min 4GB). Si vous utilisez le plan gratuit de Render, l'IA ne pourra pas démarrer. Pour corriger cela, vous pouvez :
-   - Passer au plan "Starter" sur Render.
-   - OU me demander de modifier le code pour utiliser une API externe (Groq/OpenAI) qui est gratuite/très peu chère.
+   - `GROQ_API_KEY` : (Votre clé API obtenue sur console.groq.com)
+6. **Note sur l'IA :** J'ai configuré l'IA pour utiliser **Groq**. C'est gratuit, beaucoup plus rapide que Llama en local, et cela ne consomme pas la RAM de votre serveur Render.
+   - Allez sur [Groq Cloud](https://console.groq.com/keys) pour créer une clé API gratuite.
+7. Cliquez sur **Create Web Service**. 
 
 ---
 
